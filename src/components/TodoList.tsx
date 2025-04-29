@@ -11,14 +11,14 @@ interface TodoListProps {
 const TodoList: React.FC<TodoListProps> = ({ todos, onToggle, onDelete }) => {
   if (todos.length === 0) {
     return (
-      <div className="p-4 text-center text-gray-500">
+      <div className="empty-state">
         No todos yet. Add one above!
       </div>
     );
   }
 
   return (
-    <div className="mt-4">
+    <div>
       {todos.map((todo) => (
         <TodoItem
           key={todo.id}
