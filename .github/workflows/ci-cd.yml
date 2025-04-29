@@ -6,6 +6,12 @@ on:
   pull_request:
     branches: [ main, master ]
 
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -44,6 +50,11 @@ jobs:
     needs: build-and-test
     if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
     runs-on: ubuntu-latest
+    # Add permissions needed for GitHub Pages deployment
+    permissions:
+      contents: write      # This permission is required to push to the repository
+      pages: write         # This permission is required for GitHub Pages
+      id-token: write      # This permission is required for GitHub Pages
     
     steps:
       - name: Checkout code
@@ -61,12 +72,15 @@ jobs:
       - name: Build application
         run: npm run build
 
-      # This is a placeholder for actual deployment
-      # For a college lab, you might want to deploy to GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      # Using GitHub's official Pages deployment action
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          folder: out # For Next.js static export
-          # You'll need to set up static export in next.config.js
-          # and run "npm run build && next export" instead of just "npm run build"
-          # For a real deployment, you'd need to configure this properly
+          path: './out'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
