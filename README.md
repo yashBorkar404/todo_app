@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Todo App with GitHub Actions CI/CD
+
+This is a [Next.js](https://nextjs.org) Todo application with GitHub Actions CI/CD pipeline implementation for DevOps lab assignments. The project demonstrates fundamental DevOps practices using GitHub's built-in CI/CD platform.
 
 ## Getting Started
 
@@ -29,8 +31,43 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## DevOps Lab - GitHub Actions CI/CD
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project includes a complete CI/CD pipeline using GitHub Actions for DevOps lab assignments. The workflow includes:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### CI (Continuous Integration) Pipeline
+- **Linting**: Ensures code quality and style consistency
+- **Type Checking**: Validates TypeScript types
+- **Building**: Verifies the application builds successfully
+
+### CD (Continuous Deployment) Pipeline
+- **Automated Deployment**: Deploys to GitHub Pages when changes are pushed to main branch
+- **Build Caching**: Optimizes deployment speed by caching build artifacts
+
+### GitHub Actions Workflow
+
+The workflow is defined in `.github/workflows/ci-cd.yml` and includes:
+
+```yaml
+name: Todo App CI/CD
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    # Build and test job configuration
+    
+  deploy:
+    # Deployment job configuration
+```
+
+### How to Use
+
+1. Push your code to GitHub
+2. GitHub Actions will automatically run the CI/CD pipeline
+3. View the workflow results in the Actions tab of your repository
+4. After successful deployment, your app will be available at `https://[your-username].github.io/devopslab_todo_app`
