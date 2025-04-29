@@ -56,11 +56,11 @@ export default function Home() {
   };
 
   return (
-    <div>
-      <div className="container">
-        <h1>Todo App</h1>
+    <div className="min-h-screen bg-gray-50">
+      <div className="container max-w-2xl px-4 py-8 mx-auto">
+        <h1 className="mb-8 text-3xl font-bold text-center text-gray-800">Todo App</h1>
         
-        <div>
+        <div className="p-6 bg-white rounded-lg shadow-md">
           <TodoForm onAdd={handleAddTodo} />
           <TodoList 
             todos={todos} 
@@ -68,7 +68,7 @@ export default function Home() {
             onDelete={handleDeleteTodo} 
           />
           
-          <div className="todo-stats">
+          <div className="mt-6 text-sm text-gray-500">
             <p>{todos.length} {todos.length === 1 ? 'task' : 'tasks'} | {todos.filter(t => t.completed).length} completed</p>
           </div>
         </div>
