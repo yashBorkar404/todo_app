@@ -14,7 +14,7 @@ export default function Home() {
     if (savedTodos) {
       try {
         // Parse the stored JSON and convert string dates back to Date objects
-        const parsedTodos = JSON.parse(savedTodos).map((todo: any) => ({
+        const parsedTodos = JSON.parse(savedTodos).map((todo: { id: string; text: string; completed: boolean; createdAt: string }) => ({
           ...todo,
           createdAt: new Date(todo.createdAt)
         }));
