@@ -23,7 +23,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Add a new task..."
-          className="flex-grow p-3 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="flex-grow p-3 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800"
         />
         <button
           type="submit"
