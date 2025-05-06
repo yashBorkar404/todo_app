@@ -12,13 +12,17 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -31,6 +35,7 @@ jobs:
 
       # Using GitHub's official Pages deployment action
       - name: Setup Pages
+        id: setup_pages
         uses: actions/configure-pages@v5
 
       - name: Cache build output
@@ -45,6 +50,8 @@ jobs:
 
       - name: Build application
         run: npm run build
+        env:
+          PAGES_BASE_PATH: ${{ steps.setup_pages.outputs.base_path }}
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -54,6 +61,9 @@ jobs:
 
   deploy:
     needs: build-and-test
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
     runs-on: ubuntu-latest
     # Add permissions needed for GitHub Pages deployment
