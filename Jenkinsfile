@@ -9,12 +9,13 @@ pipeline {
     environment {
         SONARQUBE_ENV = 'SonarQube-server' 
         SONARQUBE_TOKEN = credentials('sonar')
+        GITHUB_TOKEN = credentials('github-token')
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/SuchitG04/todo_app.git', branch: 'main'
+                git url: 'https://github.com/yashBorkar404/todo_app.git', branch: 'main'
             }
         }
 
@@ -55,7 +56,7 @@ pipeline {
                 sh 'git config --global user.email "jenkins@example.com"'
                 sh 'git config --global user.name "Jenkins CI"'
                 sh 'npm install -g gh-pages'
-                sh 'gh-pages -d out'
+                sh 'gh-pages -d out --repo https://yashBorkar404:${GITHUB_TOKEN}@github.com/yashBorkar404/todo_app.git'
             }
         }
     }
