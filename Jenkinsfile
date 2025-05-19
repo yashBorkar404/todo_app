@@ -35,7 +35,7 @@ pipeline {
                     sh 'npx sonar-scanner \
                         -Dsonar.projectKey=todo_app \
                         -Dsonar.sources=. \
-                        -Dsonar.host.url=http://192.168.122.106:9000 \
+                        -Dsonar.host.url=http://172.19.0.1:9000 \
                         -Dsonar.token=$SONARQUBE_TOKEN'
                 }
             }
