@@ -8,5 +8,4 @@ const nextConfig: NextConfig = {
   assetPrefix: isProd ? '/todo_app/' : '',
   images: { unoptimized: true }, // if you use next/image
 };
-
 export default nextConfig;
