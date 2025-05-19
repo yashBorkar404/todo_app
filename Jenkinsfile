@@ -36,7 +36,7 @@ pipeline {
                         -Dsonar.projectKey=todo_app \
                         -Dsonar.sources=. \
                         -Dsonar.host.url=http://192.168.122.106:9000 \
-                        -Dsonar.login=$SONARQUBE_TOKEN'
+                        -Dsonar.token=$SONARQUBE_TOKEN'
                 }
             }
         }
