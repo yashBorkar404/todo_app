@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -51,6 +52,8 @@ pipeline {
 
         stage('Deploy to GitHub Pages') {
             steps {
+                sh 'git config --global user.email "jenkins@example.com"'
+                sh 'git config --global user.name "Jenkins CI"'
                 sh 'npm install -g gh-pages'
                 sh 'gh-pages -d out'
             }
