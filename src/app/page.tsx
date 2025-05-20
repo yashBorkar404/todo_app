@@ -8,7 +8,7 @@ import { Todo } from "../types";
 export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([]);
 
-  // Load todos from localStorage on initial render
+  
   useEffect(() => {
     const savedTodos = localStorage.getItem("todos");
     if (savedTodos) {
@@ -30,7 +30,7 @@ export default function Home() {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
-  // Add a new todo
+  
   const handleAddTodo = (text: string) => {
     const newTodo: Todo = {
       id: Date.now().toString(),
@@ -41,7 +41,7 @@ export default function Home() {
     setTodos([...todos, newTodo]);
   };
 
-  // Toggle todo completion status
+  
   const handleToggleTodo = (id: string) => {
     setTodos(
       todos.map((todo) =>
@@ -50,7 +50,7 @@ export default function Home() {
     );
   };
 
-  // Delete a todo
+ 
   const handleDeleteTodo = (id: string) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
